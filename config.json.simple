@@ -1,0 +1,21 @@
+{
+  "telegram_token": "YOUR_TELEGRAM_BOT_TOKEN",
+  "telegram_chat_id": "YOUR_TELEGRAM_CHAT_ID",
+  "model": "ultralytics_pt",
+  "prefer_light_model": true,
+  "output_mode": "local",
+  "capture_mode": "video",
+  "local_save_dir": "captures",
+  "cooldown": 10,
+  "confidence": 0.5,
+  "frame_skip": 3,
+  "target_classes": ["person", "cat", "dog", "horse", "sheep", "cow", "bird"],
+  "absence_reset_seconds": 1.0,
+  "video_seconds_after_lost": 2.0,
+  "video_max_seconds": 20,
+  "video_fps": 10,
+  "video_codec": "mp4v",
+  "yolo_onnx_model": "yolov5n.onnx",
+  "yolo_input_size": 640,
+  "yolo_pt_model": "yolov8n.pt"
+}

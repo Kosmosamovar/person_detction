@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+
+# Local runtime artifacts
+captures/
+detected.jpg
+app.log
+
+# Build artifacts
+build/
+
+# Local secrets/config
+config.json

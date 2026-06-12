@@ -1,30 +1,34 @@
-# Person Detection with RT-DETR and Telegram Notification
+# Video Spy (Research Project)
 
-This project uses a webcam to detect people in real-time using the RT-DETR object detection model. When a person is detected, a photo is sent to a specified Telegram chat.
+## Important Note
 
-## Features
+This repository is primarily a **research/experimental project**.
 
-- Real-time person detection using [facebook/detr-resnet-50](https://huggingface.co/facebook/detr-resnet-50)
-- Sends detected frames to Telegram via bot
-- Configurable cooldown between notifications
+The goal is to test practical real-time detection workflows (person/animal), model fallback strategies, packaging behavior, and notification pipelines. It is not positioned as a production-hardened security system.
 
-## Requirements
+## What It Does
 
-- Python 3.8+
-- [transformers](https://pypi.org/project/transformers/)
-- [torch](https://pypi.org/project/torch/)
-- [opencv-python](https://pypi.org/project/opencv-python/)
-- [requests](https://pypi.org/project/requests/)
+- One application with built-in GUI (Start/Stop + settings)
+- Webcam detection of person/animals
+- Photo mode: one photo per continuous appearance
+- Video mode: records a clip when object appears
+- Telegram sending for photo/video (optional)
+- Runtime fallback chain for models (depending on config)
 
-Install dependencies:
+## Single App Workflow
 
-```sh
-pip install transformers torch opencv-python requests
-```
+- Main app file: `web_cam_person_detection.py`
+- Single packaged app: `dist/web_cam_person_detection.exe`
+
+When launched normally, the app opens the GUI.
+When launched internally with `--run-detector`, it starts detector mode.
 
 ## Configuration
 
-Create a `config.json` file in the project root:
+1. Copy `config.json.simple` to `config.json`.
+2. Fill Telegram fields if needed.
+
+Minimal example:
 
 ```json
 {
@@ -33,18 +37,23 @@ Create a `config.json` file in the project root:
 }
 ```
 
-## Usage
-
-Run the main detection script:
+## Run from Source
 
 ```sh
 python web_cam_person_detection.py
 ```
 
-Press `q` to quit.
+## Build EXE
 
-## Files
+```sh
+pyinstaller --noconfirm --clean .\web_cam_person_detection.spec
+```
 
-- [`web_cam_person_detection.py`](web_cam_person_detection.py): Main detection script
-- [`config.json`](config.json): Telegram bot configuration
-- [`detected.jpg`](detected.jpg): Last detected frame (overwritten each time)
+Output:
+
+- `dist/web_cam_person_detection.exe`
+
+## Git Safety
+
+- `config.json` is local-only and ignored (contains secrets)
+- use `config.json.simple` in repository as a template
